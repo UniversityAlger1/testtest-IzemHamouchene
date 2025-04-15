@@ -1,62 +1,27 @@
--- Create UniversityDB Database
-CREATE DATABASE UniversityDB;
+-- Create LabDatabase Database
+CREATE DATABASE LabDatabase;
 GO
 
--- Use UniversityDB Database
-USE UniversityDB;
+-- Use LabDatabase Database
+USE LabDatabase;
 GO
 
--- Create Universite Table
-CREATE TABLE universite (
-    codeuniversite VARCHAR(10) PRIMARY KEY,
-    nomuniversite VARCHAR(60)
+-- Create Laboratoire Table
+CREATE TABLE laboratoire (
+    CodeLab VARCHAR(4) PRIMARY KEY,
+    NomLab VARCHAR(100),
+    numch INT,
+    Datcreation DATE,
+    DatFin DATE,
+    Siteweb NVARCHAR(255)
 );
-
 GO
--- Create typeprojet Table
-CREATE TABLE typeprojet (
-    typeprj VARCHAR(10) PRIMARY KEY,
-    libelle VARCHAR(60)
-);
-GO 
--- Create Projet Table
-CREATE TABLE projet (
-    codeprj VARCHAR(4) PRIMARY KEY,
-    datedebut DATE,
-    datefin DATE,
-    responsable VARCHAR(30),
-    budget INT,
-    typeprj VARCHAR(10)
-);
-GO    
 
 -- Create Chercheur Table
 CREATE TABLE chercheur (
-    numch int PRIMARY KEY ,
-    nomch varchar(30),
-    codelab varchar(4),
-    codeuniversite varchar(10)
-);
-    
-   
--- Create Laboratoire Table
-CREATE TABLE laboratoire (
-    codelab VARCHAR(4) PRIMARY KEY,
-    nomlab VARCHAR(100),
-    numch INT,
-    datcreation DATE,
-    siteweb NVARCHAR(255)
-);
-
-
-GO
-
-
--- Create Participe Table
-CREATE TABLE participe (
-    numch INT,
-    codeprj varchar(4),
-    Charge_Horaire INT,
-    PRIMARY KEY (numch, codeprj)
+    NumCh int PRIMARY KEY ,
+    NomCh varchar(30),
+    CodeLab varchar(4),
+    FOREIGN KEY (CodeLab) REFERENCES Laboratoire(CodeLab)
 );
 GO
